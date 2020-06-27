@@ -9,14 +9,19 @@ html {
     height: 100%;
 }
 
+body {
+    min-height: 100%;
+    background-color: rgb(21, 32, 43);
+}
+
 a {
     font-family: inherit;
     text-decoration: none;
 }
 
-body {
-    min-height: 100%;
-    background-color: rgb(21, 32, 43);
+input, textarea {
+    outline: none;
+    display: block;
 }
 
 nav {
@@ -94,11 +99,66 @@ h1 {
     text-align: center;
 }
 
+button {
+    border-style: none;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+form {
+    border: 2px solid rgb(29, 161, 242);
+    width: 80%;
+    margin: 100px auto;
+    padding: 24px;
+    height: 388px;
+    max-width: 460px;
+}
+
+label {
+    display: block;
+    color: white;
+    margin: 10px 0;
+    font-size: 19px;
+}
+
+input {
+    padding: 5px;
+    margin-bottom: 19px;
+    width: 100%;
+}
+
+h2 {
+    text-align: center;
+    color: white;
+    margin: 20px;
+}
+
+.signup-button {
+    display: inline-table;
+    background-color: rgb(29, 161, 242);
+    height: 35px;
+    width: 100px;
+    border-radius: 6%;
+    display: inline-table;
+    margin-top: 16px;
+    color: white;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
 @media only screen and (min-width: 430px) {
     #home-header {
         margin: 93px auto;
     }
     #home-bullets {
         padding-left: 15px;
+    }
+    .form-buttons {
+        justify-content: space-around;
     }
 }

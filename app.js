@@ -6,7 +6,11 @@ app.set('view engine', 'ejs');
 app.use(express.static(`${__dirname}/public`));
 
 app.get('/', (req, res) => {
-    res.render('index')
-})
+    res.render('index');
+});
+
+app.get('/signup', (req, res) => {
+    res.render('signup');
+});
 
 app.listen(port, () => console.log(`app listening on port ${port}`));
