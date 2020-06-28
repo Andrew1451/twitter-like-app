@@ -101,6 +101,7 @@ h1 {
 
 button {
     border-style: none;
+    outline: none;
 }
 
 button:hover {
