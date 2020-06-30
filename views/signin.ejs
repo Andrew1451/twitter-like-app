@@ -1,14 +1,14 @@
 <%- include('partials/header') %>
 
-<form action='/signup' method='post'>
-    <h2>Sign Up!</h2>
+<form action='/signin' method='post'>
+    <h2>Sign In!</h2>
     <label for='username'>Username</label>
-    <input type='text' name='username' placeholder='FunnyMan' required autofocus>
+    <input type='text' name='username' placeholder='Your Username' autofocus required>
     <label for='password'>Password</label>
     <input type='password' name='password' placeholder='Password' required>
     <div class='form-buttons'>
-        <button type='reset' class='signup-button' value='reset'>Cancel</button>
-        <button type='submit' class='signup-button'>Sign Up</button>
+        <button type='reset' value='reset' class='signup-button'>Cancel</button>
+        <button type='submit' class='signup-button'>Sign In</button>
     </div>
     <% if (typeof errorMessage === String) { %>
     <p class='error-message'><%= errorMessage %></p>

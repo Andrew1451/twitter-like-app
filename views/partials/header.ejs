@@ -8,10 +8,21 @@
         <title>Post A Joke</title>
     </head>
     <body>
-        <nav>
-            <ul id='navbar'>
-                <li><a href='#'>Register</a></li>
-                <li><a href='#'>Sign Up</a></li>
-                <li><a href='#'>Sign In</a></li>
-            </ul>
+        <nav class='navigation'>
+            <div id='hamburger'>
+                <span class='navigation'></span>
+                <span class='navigation'></span>
+                <span class='navigation'></span>
+                <span class='navigation'></span>
+            </div>
+            <div class='navigation' id='sidedrawer'>
+                <ul class='navigation nav-left'>
+                    <li><a href='/home'>Home</a></li>
+                    <li><a href='/jokes'>Jokes</a></li>
+                    <li><a href='/friends'>Friends</a></li>
+                </ul>
+                <ul class='navigation nav-right'>
+                    <li><a href='/logout'>Logout</a></li>
+                </ul>
+            </div>
         </nav>
