@@ -1,8 +1,33 @@
 <%- include('partials/header') %>
 
-<p>yooo <%- user %></p>
-<div class='signup-signin'>
-    <a href='/logout'>Logout</a>
-</div>
+<header id=profile-header>
+    <h1>Hi, <%- user %>!</h1>
+</header>
+<main id='profile-main'>
+    <form action='/joke' method='post' class='profile-form'>
+        <h2>Post-A-Joke!</h2>
+        <textarea name='joke' placeholder='A guy walks into a bar..'></textarea>
+        <div class='form-buttons'>
+            <button type='reset' value='reset' class='signup-button'>Cancel</button>
+            <button type='submit' class='signup-button'>Post!</button>
+        </div>
+    </form>
+    <form class='profile-form'>
+        <h2>View Jokes</h2>
+        <hr>
+        <div class='form-buttons'>
+            <button type='reset' value='reset' class='signup-button'>Your Jokes</button>
+            <button type='submit' class='signup-button'>All Jokes</button>
+        </div>
+    </form>
+    <form class='profile-form'>
+        <h2>Find Friends</h2>
+        <hr>
+        <div class='form-buttons'>
+            <button type='reset' value='reset' class='signup-button'>View Friends</button>
+            <button type='submit' id='search-friends-button' class='signup-button'>Search Friends</button>
+        </div>
+    </form>
+</main>
 
 <%- include('partials/footer') %>

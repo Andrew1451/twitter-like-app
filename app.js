@@ -66,7 +66,6 @@ app.post('/signin', (req, res) => {
 });
 
 app.get('/home', isLoggedIn, (req, res) => {
-    console.log(req.user.username)
     res.render('home', {user: req.user.username})
 });
 

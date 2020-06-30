@@ -28,8 +28,8 @@ nav {
     height: 36px;
     width: 36px;
     position: absolute;
-    top: 7px;
-    right: 16px;
+    top: 15px;
+    right: 27px;
 }
 
 nav.open {
@@ -247,6 +247,51 @@ h2 {
 .form-buttons {
     display: flex;
     justify-content: space-between;
+}
+
+/*** Profile Page  **/
+
+#profile-header h1 {
+    color: white;
+    font-size: 25px;
+    margin-top: 18px;
+    margin-left: 22px;
+    text-align: left;
+}
+
+.profile-form h2 {
+    text-align: left;
+    color: white;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.profile-form textarea {
+    width: 100%;
+    height: 150px;
+    padding: 6px;
+}
+
+.profile-form {
+    width: 88%;
+    padding: 24px;
+    height: fit-content;
+    max-width: 460px;
+    margin: 11px auto;
+    border: none;
+}
+
+.profile-form hr {
+    width: 68%;
+    margin-bottom: 4px;
+}
+
+#profile-main {
+    margin-top: 45px;
+}
+
+#search-friends-button {
+    width: 104px;
 }
 
 @media only screen and (min-width: 430px) {
