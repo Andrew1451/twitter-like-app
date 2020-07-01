@@ -50,7 +50,7 @@ app.post('/signup', (req, res) => {
             return res.render('signup', {errorMessage: err.message});
         }
         passport.authenticate('local')(req, res, () => {
-            res.redirect('/')
+            res.redirect('/home')
         });
     });
 });
@@ -68,6 +68,26 @@ app.post('/signin', (req, res) => {
 app.get('/home', isLoggedIn, (req, res) => {
     res.render('home', {user: req.user.username})
 });
+
+app.post('/joke', (req, res) => {
+    User.findOne({username: req.user.username}, (err, user) => {
+        if (err) {
+            res.redirect('/login')
+        } else {
+            Joke.model.create({joke: req.body.joke}, (err, joke) => {
+                if (err) {
+                    res.redirect('/home', {errorMessage: "Couldn't save joke.."})
+                } else {
+                    user.jokes.push(joke);
+                    console.log(user);
+                    console.log(joke);
+                    user.save();
+                    res.redirect('/home');
+                }
+            })
+        }
+    })
+})
 
 app.get('/logout', (req, res) => {
     req.logout();

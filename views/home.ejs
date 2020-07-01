@@ -11,6 +11,9 @@
             <button type='reset' value='reset' class='signup-button'>Cancel</button>
             <button type='submit' class='signup-button'>Post!</button>
         </div>
+        <% if (typeof errorMessage === String) { %>
+            <p class='error-message'><%= errorMessage %> &#128556;</p>
+        <% } %>
     </form>
     <section class='content'>
         <h2>View Jokes</h2>
