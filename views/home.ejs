@@ -3,7 +3,7 @@
 <header id=profile-header>
     <h1>Hi, <%- user %>!</h1>
 </header>
-<main id='profile-main'>
+<main class='main-content'>
     <form action='/joke' method='post' class='profile-form'>
         <h2>Post-A-Joke!</h2>
         <textarea name='joke' placeholder='A guy walks into a bar..'></textarea>
@@ -20,7 +20,7 @@
         <hr>
         <div class='profile-buttons'>
             <div class='profile-button'>
-                <a href='/signup'>Your Jokes</a>
+                <a href='/<%- user %>/your-jokes'>Your Jokes</a>
             </div>
             <div class='profile-button'>
                 <a href='/signin'>All Jokes</a>
@@ -35,7 +35,7 @@
                 <a href='/signup'>View Friends</a>
             </div>
             <div class='profile-button' id='search-friends-button'>
-                <a href='/signin'>Search Friends</a>
+                <a href='/search-friends'>Search Friends</a>
             </div>
         </div>
     </section>

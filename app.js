@@ -9,7 +9,9 @@ const express       = require('express'),
       Joke          = require('./models/joke'),
       User          = require('./models/user');
 
+// create/connect to twitter database
 mongoose.connect('mongodb://localhost/twitter', { useNewUrlParser: true, useUnifiedTopology: true });
+
 app.set('view engine', 'ejs');
 app.use(express.static(`${__dirname}/public`));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -27,6 +29,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+//middleware to make sure user is logged in
 const isLoggedIn = (req, res, next) => {
     if (req.isAuthenticated()) {
         return next();
@@ -70,24 +73,37 @@ app.get('/home', isLoggedIn, (req, res) => {
 });
 
 app.post('/joke', (req, res) => {
+    //find user from mongoDB
     User.findOne({username: req.user.username}, (err, user) => {
         if (err) {
             res.redirect('/login')
         } else {
+            //save joke to mongoDB
             Joke.model.create({joke: req.body.joke}, (err, joke) => {
                 if (err) {
                     res.redirect('/home', {errorMessage: "Couldn't save joke.."})
                 } else {
+                    //add joke to user's jokes
                     user.jokes.push(joke);
-                    console.log(user);
-                    console.log(joke);
                     user.save();
                     res.redirect('/home');
                 }
-            })
+            });
         }
-    })
-})
+    });
+});
+
+app.get('/:id/your-jokes', isLoggedIn, (req, res) => {
+    //find user by username
+    User.findOne({username: req.user.username}, (err, user) => {
+        if (err) {
+            redirect('/signin');
+        } else {
+            //render page. pass in jokes and user
+            res.render('user-jokes', {jokes: user.jokes, user: req.user.username});
+        }
+    });
+});
 
 app.get('/logout', (req, res) => {
     req.logout();

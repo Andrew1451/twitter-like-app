@@ -249,7 +249,7 @@ h2 {
     justify-content: space-between;
 }
 
-/*** Profile Page  **/
+/*** Profile Page  ***/
 
 #profile-header h1 {
     color: white;
@@ -332,12 +332,23 @@ h2 {
     margin-bottom: 4px;
 }
 
-#profile-main {
+.main-content {
     margin-top: 45px;
 }
 
 #search-friends-button {
     width: 104px;
+}
+
+/*** Your Jokes Page ***/
+
+.joke {
+    margin: 46px;
+}
+
+.joke h4 {
+    color: rgb(29, 161, 242);
+    margin-bottom: 7px;
 }
 
 @media only screen and (min-width: 430px) {
@@ -353,7 +364,7 @@ h2 {
 }
 
 @media only screen and (min-width: 800px) {
-    #profile-main {
+    .main-content {
         border: 2px solid rgb(29, 161, 242);
         width: 614px;
         margin: 44px auto;
