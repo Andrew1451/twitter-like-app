@@ -105,6 +105,17 @@ app.get('/:id/your-jokes', isLoggedIn, (req, res) => {
     });
 });
 
+app.get('/:id/search-friends', isLoggedIn, (req, res) => {
+    User.find({}, (err, users) => {
+        if (err) {
+            console.log(err);
+            redirect('/home');
+        } else {
+            res.render('search-friends', {users: users, user: req.body.username})
+        }
+    });
+});
+
 app.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/signin');

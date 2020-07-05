@@ -333,7 +333,8 @@ h2 {
 }
 
 .main-content {
-    margin-top: 45px;
+    padding: 46px;
+    max-height: fit-content;
 }
 
 #search-friends-button {
@@ -342,13 +343,31 @@ h2 {
 
 /*** Your Jokes Page ***/
 
-.joke {
-    margin: 46px;
+.main-content-item {
+    margin-top: 46px;
 }
 
-.joke h4 {
+.main-content-item h4 {
     color: rgb(29, 161, 242);
     margin-bottom: 7px;
+}
+
+/*** Find Friends Page ***/
+
+.h2-left {
+    text-align: left;
+    margin: 50px 0 10px 0;
+    width: fit-content;
+    display: inline-block;
+}
+
+#search-hr {
+    margin-bottom: 10px;
+    width: 66%;
+}
+
+#search-filter {
+    width: 66%;
 }
 
 @media only screen and (min-width: 430px) {
@@ -368,7 +387,7 @@ h2 {
         border: 2px solid rgb(29, 161, 242);
         width: 614px;
         margin: 44px auto;
-        height: 697px;
+        min-height: 697px;
     }
     nav {
         height: 50px;
