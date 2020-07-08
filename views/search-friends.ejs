@@ -6,7 +6,7 @@
     <input type='text' id='search-filter' onkeyup='filter()' placeholder='Search username'>
         <% users.forEach(user => { %>
             <div class='main-content-item usernames'>
-                <h4><%- user.username %></h4>
+                <h4 id='<%- user.username %>' onclick='addUser(this.id)'><%- user.username %> <span class="fas fa-user-plus"></span></h4>
             </div>
         <% }) %>
 

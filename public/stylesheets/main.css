@@ -370,6 +370,22 @@ h2 {
     width: 66%;
 }
 
+.fas {
+    margin-left: 5px;
+    color: white;
+}
+
+.usernames h4 {
+    cursor: pointer;
+}
+
+.added {
+    color: lime;
+    font-size: 13px;
+    font-weight: 600;
+    display: inline;
+}
+
 @media only screen and (min-width: 430px) {
     #home-header {
         margin: 93px auto;

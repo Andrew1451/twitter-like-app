@@ -1,7 +1,6 @@
 const express       = require('express'),
       app           = express(),
-      port          = 3000,
-      flash         = require('connect-flash'),
+      port          = process.env.PORT || 3000,
       bodyParser    = require('body-parser'),
       mongoose      = require('mongoose'),
       passport      = require('passport'),
@@ -15,7 +14,6 @@ mongoose.connect('mongodb://localhost/twitter', { useNewUrlParser: true, useUnif
 app.set('view engine', 'ejs');
 app.use(express.static(`${__dirname}/public`));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(flash());
 
 //passport configuration
 app.use(require('express-session')({
@@ -49,7 +47,6 @@ app.post('/signup', (req, res) => {
     const newUser = new User({username: req.body.username});
     User.register(newUser, req.body.password, (err, user) => {
         if (err) {
-            console.log(err);
             return res.render('signup', {errorMessage: err.message});
         }
         passport.authenticate('local')(req, res, () => {
@@ -108,7 +105,6 @@ app.get('/:id/your-jokes', isLoggedIn, (req, res) => {
 app.get('/:id/search-friends', isLoggedIn, (req, res) => {
     User.find({}, (err, users) => {
         if (err) {
-            console.log(err);
             redirect('/home');
         } else {
             res.render('search-friends', {users: users, user: req.body.username})
@@ -116,9 +112,25 @@ app.get('/:id/search-friends', isLoggedIn, (req, res) => {
     });
 });
 
+//add friend from ajax call
+app.post('/add-friend', isLoggedIn, (req, res) => {
+    //find user who clicked on a friend to addd
+    User.findOne({username: req.user.username}, (err, user) => {
+        if (err) {
+            redirect('/home');
+        } else {
+            //add friend to users' friends
+            user.friends.push(req.body.addfriend);
+            user.save();
+            res.sendStatus(200);
+        }
+    })
+    
+})
+
 app.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/signin');
 });
 
-app.listen(port, () => console.log(`Server running....`));
+app.listen(port, () => console.log(`Server running on port: ${port}`));
