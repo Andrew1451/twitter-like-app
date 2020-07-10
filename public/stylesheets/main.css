@@ -40,6 +40,21 @@ nav ul {
     list-style: none;
 }
 
+.nav-left {
+    margin-bottom: 11px;
+}
+
+nav hr {
+    display: none;
+    border: 1px solid rgb(29, 161, 242);
+    height: 1px;
+    width: 39%;
+}
+
+nav hr.open {
+    display: block;
+}
+
 nav a {
     text-decoration: none;
     color: white;
@@ -273,7 +288,7 @@ h2 {
 }
 
 .profile-form {
-    width: 88%;
+    width: 100%;
     padding: 24px;
     height: fit-content;
     max-width: 460px;
@@ -312,7 +327,7 @@ h2 {
 }
 
 .content {
-    width: 88%;
+    width: 100%;
     padding: 24px;
     height: fit-content;
     max-width: 460px;
@@ -428,13 +443,19 @@ h2 {
         width: 35%;
         max-width: 394px;
         margin-left: 8%;
+        margin-bottom: 0;
         justify-content: space-between;
     }
+
+    nav hr {
+        display: none;
+    }
+
     .nav-right {
-        justify-content: flex-end;
+        justify-content: space-between;
         margin-right: 8%;
         float: right;
-        width: 33%;
+        width: 17%;
     }
     .navigation li {
         display: table;

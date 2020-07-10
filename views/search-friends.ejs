@@ -4,13 +4,14 @@
     <h2 class='h2-left'>Find Friends</h2>
     <hr id='search-hr'>
     <input type='text' id='search-filter' onkeyup='filter()' placeholder='Search username'>
-        <% users.forEach(user => { %>
-            <% if (friends.indexOf(user.username) < 0 && user.username !== thisUser) { %>
+        <% users.forEach(user => { 
+            //for each user from database, filter out current user's friends list and current user
+            if (friends.indexOf(user.username) < 0 && user.username !== thisUser) { %>
                 <div class='main-content-item usernames'>
                     <h4 id='<%- user.username %>' onclick='addUser(this.id)'><%- user.username %> <span class="fas fa-user-plus"></span></h4>
                 </div>
-            <% } %>
-        <% }) %>
+            <% }
+        }) %>
 
 </main>
 

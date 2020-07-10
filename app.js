@@ -103,16 +103,19 @@ app.get('/:id/your-jokes', isLoggedIn, (req, res) => {
 });
 
 app.get('/:id/search-friends', isLoggedIn, (req, res) => {
+    //find all users
     User.find({}, (err, users) => {
         if (err) {
             redirect('/home');
         } else {
+            //get logged in user
             User.findOne({username: req.user.username}, (err, currentUser) => {
                 if (err) {
                     redirect('/home');
                 } else {
+                    //get logged in user's friends
                     let friends = currentUser.friends;
-                    res.render('search-friends', {users: users, thisUser: req.user.username, friends: friends})
+                    res.render('search-friends', {users, thisUser: req.user.username, friends})
                 }
             })
         }
