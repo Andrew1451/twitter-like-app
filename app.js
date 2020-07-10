@@ -73,7 +73,7 @@ app.post('/joke', (req, res) => {
     //find user from mongoDB
     User.findOne({username: req.user.username}, (err, user) => {
         if (err) {
-            res.redirect('/login')
+            res.render('signin', {errorMessage: 'Something went wrong. Log back in?'});
         } else {
             //save joke to mongoDB
             Joke.model.create({joke: req.body.joke}, (err, joke) => {
@@ -94,7 +94,7 @@ app.get('/:id/your-jokes', isLoggedIn, (req, res) => {
     //find user by username
     User.findOne({username: req.user.username}, (err, user) => {
         if (err) {
-            redirect('/signin');
+            res.render('signin', {errorMessage: 'Something went wrong. Log back in?'});
         } else {
             //render page. pass in jokes and user
             res.render('user-jokes', {jokes: user.jokes, user: req.user.username});
@@ -106,12 +106,12 @@ app.get('/:id/search-friends', isLoggedIn, (req, res) => {
     //find all users
     User.find({}, (err, users) => {
         if (err) {
-            redirect('/home');
+            res.render('signin', {errorMessage: 'Something went wrong. Log back in?'});
         } else {
             //get logged in user
             User.findOne({username: req.user.username}, (err, currentUser) => {
                 if (err) {
-                    redirect('/home');
+                    res.render('signin', {errorMessage: 'Something went wrong. Log back in?'});
                 } else {
                     //get logged in user's friends
                     let friends = currentUser.friends;
@@ -122,12 +122,22 @@ app.get('/:id/search-friends', isLoggedIn, (req, res) => {
     });
 });
 
+app.get('/:id/your-friends', isLoggedIn, (req, res) => {
+    User.findOne({username: req.user.username}, (err, user) => {
+        if (err) {
+            res.render('signin', {errorMessage: 'Something went wrong. Log back in?'});
+        } else {
+            res.render('view-friends', {friends: user.friends});
+        }
+    });
+});
+
 //add friend from ajax call
 app.post('/add-friend', isLoggedIn, (req, res) => {
     //find user who clicked on a friend to addd
     User.findOne({username: req.user.username}, (err, user) => {
         if (err) {
-            redirect('/home');
+            res.render('signin', {errorMessage: 'Something went wrong. Log back in?'});
         } else {
             //add friend to users' friends
             user.friends.push(req.body.addfriend);

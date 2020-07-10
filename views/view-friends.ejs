@@ -1,0 +1,14 @@
+<%- include('partials/header') %>
+
+<main class='main-content'>
+    <h2 class='h2-left'>Your Friends</h2>
+    <hr id='search-hr'>
+        <% friends.forEach(friend => { %>
+                <div class='main-content-item usernames'>
+                    <h4><%- friend %></h4>
+                </div>
+        <% }) %>
+
+</main>
+
+<%- include('partials/footer') %>
