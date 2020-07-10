@@ -107,7 +107,14 @@ app.get('/:id/search-friends', isLoggedIn, (req, res) => {
         if (err) {
             redirect('/home');
         } else {
-            res.render('search-friends', {users: users, user: req.body.username})
+            User.findOne({username: req.user.username}, (err, currentUser) => {
+                if (err) {
+                    redirect('/home');
+                } else {
+                    let friends = currentUser.friends;
+                    res.render('search-friends', {users: users, thisUser: req.user.username, friends: friends})
+                }
+            })
         }
     });
 });
