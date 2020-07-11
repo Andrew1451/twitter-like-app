@@ -392,6 +392,11 @@ h2 {
 
 .usernames h4 {
     cursor: pointer;
+    width: fit-content
+}
+
+.friend-links {
+    color: inherit;
 }
 
 .added {

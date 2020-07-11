@@ -115,7 +115,7 @@ app.get('/:id/search-friends', isLoggedIn, (req, res) => {
                 } else {
                     //get logged in user's friends
                     let friends = currentUser.friends;
-                    res.render('search-friends', {users, thisUser: req.user.username, friends})
+                    res.render('search-friends', {users, user: req.user.username, friends})
                 }
             })
         }
@@ -127,7 +127,7 @@ app.get('/:id/your-friends', isLoggedIn, (req, res) => {
         if (err) {
             res.render('signin', {errorMessage: 'Something went wrong. Log back in?'});
         } else {
-            res.render('view-friends', {friends: user.friends});
+            res.render('view-friends', {friends: user.friends, user: req.user.username});
         }
     });
 });
@@ -144,12 +144,26 @@ app.post('/add-friend', isLoggedIn, (req, res) => {
             user.save();
             res.sendStatus(200);
         }
-    })
-    
-})
+    });
+});
+
+app.get('/:id/:id', isLoggedIn, (req, res) => {
+    User.findOne({username: req.params.id}, (err, user) => {
+        if (err) {
+            res.render('signin', {errorMessage: 'Something went wrong. Log back in?'});
+        } else {
+            res.render('friends-jokes', {user: user});
+        }
+    });
+});
 
 app.get('/logout', (req, res) => {
     req.logout();
+    req.session.destroy(err => {
+        if (err) {
+            res.redirect('/home');
+        }
+    })
     res.redirect('/signin');
 });
 

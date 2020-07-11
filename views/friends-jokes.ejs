@@ -1,0 +1,14 @@
+<%- include('partials/header') %>
+
+<main class='main-content'>
+    <h2><%- user.username %>'s Jokes &#128514;</h2>
+        <% user.jokes.forEach(joke => { %>
+            <div class='main-content-item'>
+                <h4><%- user.username %></h4>
+                <p><%- joke.joke %></p>
+            </div>
+        <% }) %>
+
+</main>
+
+<%- include('partials/footer') %>
