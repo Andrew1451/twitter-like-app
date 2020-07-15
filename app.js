@@ -147,6 +147,30 @@ app.post('/add-friend', isLoggedIn, (req, res) => {
     });
 });
 
+app.get('/:id/all-jokes', isLoggedIn, (req, res) => {
+    //get user's friends
+    User.findOne({username: req.user.username}, async (err, user) => {
+        try {
+            let friendsAndJokes = [];
+            //loop through friends and retrieve their data
+            const friends = user.friends.map(async (friend) => User.findOne({username: friend}, (error, friendUser) => {
+                    if (error) {
+                        res.render('signin', {errorMessage: 'Something went wrong. Log back in?'})
+                    } else {
+                        friendsAndJokes.push(friendUser);
+                    }
+            }));
+            // (have to wait and do it asynchronously)
+            await Promise.all(friends);
+            res.render('all-jokes', {friends: friendsAndJokes})
+        } catch {
+            if (err) {
+                res.render('signin', {errorMessage: 'Something went wrong. Log back in?'});
+            }
+        }
+    });
+});
+
 app.get('/:id/:id', isLoggedIn, (req, res) => {
     User.findOne({username: req.params.id}, (err, user) => {
         if (err) {
