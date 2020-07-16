@@ -2,6 +2,24 @@
 
 <main class='main-content'>
     <h2>Jokes &#128514;</h2>
+    <% const jokesWithUsername = [];
+    //loop through each friend
+    friends.forEach(friend => { 
+        //loop through their jokes
+        friend.jokes.forEach(joke => {
+            //add their username to each of their jokes and add both (as an object) into an array
+            jokesWithUsername.push({username: friend.username, joke})
+        });
+    });
+    //put that array in descending order
+    const putInOrder = (time1, time2) => time2.joke.createdAt - time1.joke.createdAt;
+    jokesWithUsername.sort(putInOrder);
 
+    jokesWithUsername.forEach(user => { %>
+        <div class='main-content-item'>
+            <h4><%- user.username %></h4>
+            <p><%- user.joke.joke %></p>
+        </div>
+    <% }) %>
 </main>
 <%- include('partials/footer') %>
