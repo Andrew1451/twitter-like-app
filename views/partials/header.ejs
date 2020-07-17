@@ -18,11 +18,13 @@
                 <span class='navigation'></span>
             </div>
             <div class='navigation' id='sidedrawer'>
+                <% if (locals.user || this.user) { %>
                 <ul class='navigation nav-left'>
                         <li><a href='/home'>Profile</a></li>
                         <li><a href='/jokes'>Jokes</a></li>
                         <li><a href='/your-friends'>Friends</a></li>
                 </ul>
+            <% } %>
                 <hr class='navigation'>
                 <ul class='navigation nav-right'>
                     <li><a href='/'>Home</a></li>

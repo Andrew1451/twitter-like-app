@@ -83,7 +83,7 @@ app.post('/joke', (req, res) => {
                     //add joke to user's jokes
                     user.jokes.push(joke);
                     user.save();
-                    res.redirect('/home');
+                    res.redirect(`/${user.username}/all-jokes`);
                 }
             });
         }
@@ -162,7 +162,7 @@ app.get('/:id/all-jokes', isLoggedIn, (req, res) => {
             }));
             // (have to wait and do it asynchronously)
             await Promise.all(friends);
-            res.render('all-jokes', {friends: friendsAndJokes})
+            res.render('all-jokes', {friends: friendsAndJokes, user})
         } catch {
             if (err) {
                 res.render('signin', {errorMessage: 'Something went wrong. Log back in?'});

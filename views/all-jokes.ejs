@@ -11,6 +11,10 @@
             jokesWithUsername.push({username: friend.username, joke})
         });
     });
+    //add current user and their jokes to array
+    user.jokes.forEach(joke => {
+        jokesWithUsername.push({username: user.username, joke})
+    });
     //put that array in descending order
     const putInOrder = (time1, time2) => time2.joke.createdAt - time1.joke.createdAt;
     jokesWithUsername.sort(putInOrder);
