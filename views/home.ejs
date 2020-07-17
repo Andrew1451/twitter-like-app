@@ -1,7 +1,7 @@
 <%- include('partials/header') %>
 
 <header id=profile-header>
-    <h1>Hi, <%- user %>!</h1>
+    <h1>Hi, <%- user.username %>!</h1>
 </header>
 <main class='main-content'>
     <form action='/joke' method='post' class='profile-form'>
@@ -20,10 +20,10 @@
         <hr>
         <div class='profile-buttons'>
             <div class='profile-button'>
-                <a href='/<%- user %>/your-jokes'>Your Jokes</a>
+                <a href='/<%- user.username %>/your-jokes'>Your Jokes</a>
             </div>
             <div class='profile-button'>
-                <a href='/<%- user %>/all-jokes'>All Jokes</a>
+                <a href='/<%- user.username %>/all-jokes'>All Jokes</a>
             </div>
         </div>
     </section>
@@ -32,10 +32,10 @@
         <hr>
         <div class='profile-buttons'>
             <div class='profile-button'>
-                <a href='/<%- user %>/your-friends'>View Friends</a>
+                <a href='/<%- user.username %>/your-friends'>View Friends</a>
             </div>
             <div class='profile-button' id='search-friends-button'>
-                <a href='/<%- user %>/search-friends'>Search Friends</a>
+                <a href='/<%- user.username %>/search-friends'>Search Friends</a>
             </div>
         </div>
     </section>

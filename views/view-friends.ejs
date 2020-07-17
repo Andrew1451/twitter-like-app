@@ -5,7 +5,7 @@
     <hr id='search-hr'>
         <% friends.forEach(friend => { %>
                 <div class='main-content-item usernames'>
-                    <h4><a class='friend-links' href='/<%- user %>/<%- friend %>'><%- friend %></a></h4>
+                    <h4><a class='friend-links' href='/<%- user.username %>/<%- friend %>'><%- friend %></a></h4>
                 </div>
         <% }) %>
 

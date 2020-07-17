@@ -6,7 +6,7 @@
     <input type='text' id='search-filter' onkeyup='filter()' placeholder='Search username'>
         <% users.forEach(usr => { 
             //for each user from database, filter out current user's friends list and current user
-            if (friends.indexOf(usr.username) < 0 && usr.username !== user) { %>
+            if (friends.indexOf(usr.username) < 0 && usr.username !== user.username) { %>
                 <div class='main-content-item usernames'>
                     <h4 id='<%- usr.username %>' onclick='addUser(this.id)'><%- usr.username %> <span class="fas fa-user-plus"></span></h4>
                 </div>

@@ -4,7 +4,7 @@
     <h2>Your Jokes &#128514;</h2>
         <% jokes.forEach(joke => { %>
             <div class='main-content-item'>
-                <h4><%- user %></h4>
+                <h4><%- user.username %></h4>
                 <p><%- joke.joke %></p>
             </div>
         <% }) %>

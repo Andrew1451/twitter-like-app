@@ -66,7 +66,7 @@ app.post('/signin', (req, res) => {
 });
 
 app.get('/home', isLoggedIn, (req, res) => {
-    res.render('home', {user: req.user.username})
+    res.render('home', {user: req.user})
 });
 
 app.post('/joke', (req, res) => {
@@ -97,7 +97,7 @@ app.get('/:id/your-jokes', isLoggedIn, (req, res) => {
             res.render('signin', {errorMessage: 'Something went wrong. Log back in?'});
         } else {
             //render page. pass in jokes and user
-            res.render('user-jokes', {jokes: user.jokes, user: req.user.username});
+            res.render('user-jokes', {jokes: user.jokes, user: req.user});
         }
     });
 });
@@ -115,7 +115,7 @@ app.get('/:id/search-friends', isLoggedIn, (req, res) => {
                 } else {
                     //get logged in user's friends
                     let friends = currentUser.friends;
-                    res.render('search-friends', {users, user: req.user.username, friends})
+                    res.render('search-friends', {users, user: req.user, friends})
                 }
             })
         }
@@ -127,7 +127,7 @@ app.get('/:id/your-friends', isLoggedIn, (req, res) => {
         if (err) {
             res.render('signin', {errorMessage: 'Something went wrong. Log back in?'});
         } else {
-            res.render('view-friends', {friends: user.friends, user: req.user.username});
+            res.render('view-friends', {friends: user.friends, user: req.user});
         }
     });
 });

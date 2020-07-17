@@ -10,7 +10,7 @@
         <title>Post A Joke</title>
     </head>
     <body>
-        <nav class='navigation'>
+    <nav <% if (!locals.user) { %> style='display: none' <% } %> class='navigation'>
             <div id='hamburger'>
                 <span class='navigation'></span>
                 <span class='navigation'></span>
@@ -18,17 +18,17 @@
                 <span class='navigation'></span>
             </div>
             <div class='navigation' id='sidedrawer'>
-                <% if (locals.user || this.user) { %>
+                <% if (locals.user) { %>
                 <ul class='navigation nav-left'>
-                        <li><a href='/home'>Profile</a></li>
-                        <li><a href='/jokes'>Jokes</a></li>
-                        <li><a href='/your-friends'>Friends</a></li>
+                    <li><a href='/home'>Profile</a></li>
+                    <li><a href='/<%- user.username %>/all-jokes'>Jokes</a></li>
+                    <li><a href='/<%- user.username %>/your-friends'>Friends</a></li>
                 </ul>
-            <% } %>
                 <hr class='navigation'>
                 <ul class='navigation nav-right'>
-                    <li><a href='/'>Home</a></li>
+                    <li><a href='/home'>Home</a></li>
                     <li><a href='/logout'>Logout</a></li>
                 </ul>
+            <% } %>
             </div>
         </nav>
