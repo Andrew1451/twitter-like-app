@@ -10,8 +10,8 @@
         <button type='reset' value='reset' class='signup-button'>Cancel</button>
         <button type='submit' class='signup-button'>Sign In</button>
     </div>
-    <% if (typeof errorMessage === String) { %>
-    <p class='error-message'><%= errorMessage %></p>
+    <% if (locals.errorMessage) { %>
+    <p class='error-message'><%- errorMessage %></p>
     <% } %>
 </form>
 

@@ -188,7 +188,11 @@ app.get('/logout', (req, res) => {
             res.redirect('/home');
         }
     })
-    res.redirect('/signin');
+    res.redirect('/');
 });
+
+app.get('*', (req, res) => {
+    res.render('signin', {errorMessage: "Couldn't find that page. =/ "});
+})
 
 app.listen(port, () => console.log(`Server running on port: ${port}`));
