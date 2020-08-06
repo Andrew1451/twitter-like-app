@@ -4,6 +4,8 @@ const express       = require('express'),
       bodyParser    = require('body-parser'),
       mongoose      = require('mongoose'),
       passport      = require('passport'),
+      session       = require('express-session'),
+      MongoStore    = require('connect-mongo')(session),
       LocalStrategy = require('passport-local'),
       Joke          = require('./models/joke'),
       User          = require('./models/user');
@@ -16,10 +18,12 @@ app.use(express.static(`${__dirname}/public`));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //passport configuration
-app.use(require('express-session')({
+app.use(session({
     secret: "I'm afraid I can't tell you that",
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    cookie: { maxAge: 180 * 60 * 1000 } // 180 minutes session expiration
 }));
 app.use(passport.initialize());
 app.use(passport.session());
