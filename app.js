@@ -9,7 +9,7 @@ const express       = require('express'),
       User          = require('./models/user');
 
 // create/connect to twitter database
-mongoose.connect('mongodb://localhost/twitter', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.DATABASE, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.set('view engine', 'ejs');
 app.use(express.static(`${__dirname}/public`));
@@ -154,11 +154,13 @@ app.get('/:id/all-jokes', isLoggedIn, (req, res) => {
             let friendsAndJokes = [];
             //loop through friends and retrieve their data
             const friends = user.friends.map(async (friend) => User.findOne({username: friend}, (error, friendUser) => {
+                try {
+                    friendsAndJokes.push(friendUser);
+                } catch {
                     if (error) {
                         res.render('signin', {errorMessage: 'Something went wrong. Log back in?'})
-                    } else {
-                        friendsAndJokes.push(friendUser);
                     }
+                }
             }));
             // (have to wait and do it asynchronously)
             await Promise.all(friends);
