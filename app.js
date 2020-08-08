@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //passport configuration
 app.use(session({
-    secret: "I'm afraid I can't tell you that",
+    secret: process.env.SHH,
     resave: false,
     saveUninitialized: false,
     store: new MongoStore({ mongooseConnection: mongoose.connection }),

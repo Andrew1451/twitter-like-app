@@ -20,7 +20,6 @@ const filter = () => {
             names.style.display = 'none';
         }
     });
-
 }
 
 //ajax request for add friend
