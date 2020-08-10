@@ -9,7 +9,8 @@ const express       = require('express'),
       LocalStrategy = require('passport-local'),
       Joke          = require('./models/joke'),
       User          = require('./models/user');
-
+      
+require('dotenv').config();
 // create/connect to twitter database
 mongoose.connect(process.env.DATABASE, { useNewUrlParser: true, useUnifiedTopology: true });
 
