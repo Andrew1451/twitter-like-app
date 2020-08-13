@@ -7,28 +7,29 @@
         <script src="https://use.fontawesome.com/0253c8384d.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/solid.min.css">
         <link rel="stylesheet" type='text/css' href='/stylesheets/main.css'>
+        <link rel='icon' type='image/png' href='/images/favicon.ico'>
         <title>Post A Joke</title>
     </head>
     <body>
     <nav <% if (!locals.user) { %> style='display: none' <% } %> class='navigation'>
-            <div id='hamburger'>
-                <span class='navigation'></span>
-                <span class='navigation'></span>
-                <span class='navigation'></span>
-                <span class='navigation'></span>
-            </div>
-            <div class='navigation' id='sidedrawer'>
-                <% if (locals.user) { %>
-                <ul class='navigation nav-left'>
-                    <li><a href='/home'>Profile</a></li>
-                    <li><a href='/<%- user.username %>/all-jokes'>Jokes</a></li>
-                    <li><a href='/<%- user.username %>/your-friends'>Friends</a></li>
-                </ul>
-                <hr class='navigation'>
-                <ul class='navigation nav-right'>
-                    <li><a href='/home'>Home</a></li>
-                    <li><a href='/logout'>Logout</a></li>
-                </ul>
-            <% } %>
-            </div>
-        </nav>
+        <div id='hamburger'>
+            <span class='navigation'></span>
+            <span class='navigation'></span>
+            <span class='navigation'></span>
+            <span class='navigation'></span>
+        </div>
+        <div class='navigation' id='sidedrawer'>
+            <% if (locals.user) { %>
+            <ul class='navigation nav-left'>
+                <li><a href='/home'>Profile</a></li>
+                <li><a href='/<%- user.username %>/all-jokes'>Jokes</a></li>
+                <li><a href='/<%- user.username %>/your-friends'>Friends</a></li>
+            </ul>
+            <hr class='navigation'>
+            <ul class='navigation nav-right'>
+                <li><a href='/home'>Home</a></li>
+                <li><a href='/logout'>Logout</a></li>
+            </ul>
+        <% } %>
+        </div>
+    </nav>
