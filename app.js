@@ -65,7 +65,7 @@ app.get('/signin', (req, res) => {
 });
 
 app.post('/signin', (req, res) => {
-    passport.authenticate('local')(req, res, () => {
+    passport.authenticate('local', {failureRedirect: '/signin'})(req, res, () => {
         res.redirect('/home');
     });
 });
