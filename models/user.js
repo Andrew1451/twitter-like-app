@@ -6,7 +6,7 @@ const UserSchema = new mongoose.Schema({
     username: String,
     password: String,
     jokes: [JokeSchema.schema],
-    friends: [String]
+    friends: {type: [String], default: ['FunnyMan', 'omgSoFunny', 'ClassClown']}
 });
 
 UserSchema.plugin(passportLocalMongoose);
