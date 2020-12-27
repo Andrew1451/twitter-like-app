@@ -12,7 +12,11 @@ const express       = require('express'),
       
 require('dotenv').config();
 // create/connect to twitter database
-mongoose.connect(process.env.DATABASE, { useNewUrlParser: true, useUnifiedTopology: true });
+try {
+    mongoose.connect(process.env.DATABASE, { useNewUrlParser: true, useUnifiedTopology: true });
+} catch (e) {
+    console.log('could not connect to database')
+}
 
 app.set('view engine', 'ejs');
 app.use(express.static(`${__dirname}/public`));
